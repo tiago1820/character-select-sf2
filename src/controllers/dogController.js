@@ -31,6 +31,10 @@ class DogController {
             return res.status(500).send("Error al obtener las razas.");
         }
     }
+
+    getBreedByName = async () => {
+        return
+    }
 }
 
 
