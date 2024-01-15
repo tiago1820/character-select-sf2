@@ -4,7 +4,9 @@ const router = Router();
 const DogController = require("../controllers/dogController");
 const dog = new DogController();
 
-router.get("/dogs", (req, res) => dog.getAllBreeds(req, res));
-router.get("/dogs/:idBreed", (req, res) => dog.getBreedById(req, res));
 
+router.get("/dogs/breedName", (req, res) => dog.getBreedByName(req, res));
+/*router.get("/dogs", (req, res) => dog.getAllBreeds(req, res));
+router.get("/dogs/:idBreed", (req, res) => dog.getBreedById(req, res));
+*/
 module.exports = router;

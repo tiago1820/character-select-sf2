@@ -32,6 +32,19 @@ class ApiService {
             throw error;
         }
     }
+
+    getBreedByName = async (breedName) => {
+        console.log("Name", breedName);
+        try {
+	    console.log(`${this.DOG_API}/search?q=${breedName}?${this.API_KEY}`);
+            const result = await axios(`${this.DOG_API}/search?q=${breedName}`);
+	    const breedInfo = result.data;	    
+	    return breedInfo;
+	} catch (error) {
+	    console.log(error);
+	    throw error;
+	}
+    }
 }
 
 module.exports = ApiService;
