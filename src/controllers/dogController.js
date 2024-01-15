@@ -9,7 +9,6 @@ class DogController {
     getBreedById = async (req, res) => {
         try {
             const { idBreed } = req.params;
-            console.log("ID", idBreed);
             const source = isNaN(idBreed) ? "bdd" : "api";
 
             if(source === "api") {
@@ -32,8 +31,29 @@ class DogController {
         }
     }
 
-    getBreedByName = async () => {
-        return
+    getBreedByName = async (req, res) => {
+        try { 
+	    const { breedName } = req.query;
+	    let message = "";
+
+	    if (!breedName) {
+                message = "Falta el nombre de la raza.";
+	        return res.status(400).send(message);
+	    }
+	
+	    let breedInfo = await this.api.getBreedByName(breedName);
+
+	    if(!breedInfo) {
+                message = "Raza no encontrada.";
+	        return res.status(400).send(message);
+	    }
+	    
+	    return res.status(200).json(breedInfo);
+        } catch (error) {
+	    console.log(error);
+	    message = "Raza no encontrada.";
+	    return res.status(404).send(message);
+	}
     }
 }
 
