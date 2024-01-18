@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-    sequelize.define("auth", {
+    sequelize.define("User", {
          id: {
              type: DataTypes.UUID,
              defaultValue: DataTypes.UUIDV4,
@@ -16,7 +16,9 @@ module.exports = (sequelize) => {
 	 email: {
 	     type: DataTypes.STRING,
 	     allowNull: false,
-	     isEmail: true
+	     validate: {
+			isEmail: true
+		 }
 	 },
     }, { timestamps: false });
 };

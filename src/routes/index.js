@@ -11,8 +11,7 @@ router.get("/auth", (req, res) => auth.signIn(req, res));
 router.post("/auth", (req, res) => auth.signUp(req, res));
 router.post("/google", (req, res) => auth.google(req, res));
 
-
 router.get("/dogs/breedName", (req, res) => dog.getBreedByName(req, res));
 router.get("/dogs", (req, res) => dog.getAllBreeds(req, res));
-router.get("/dogs/:idBreed", (req, res) => dog.getBreedById(req, res));
+router.get("/dogs/:breedId", (req, res) => dog.getBreedById(req, res));
 module.exports = router;
