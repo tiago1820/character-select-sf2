@@ -4,7 +4,7 @@ const Validator = require("../validation/validator.js");
 class DogController {
     constructor() {
         this.api = new ApiService();
-        this.validator = new Validator();
+this.validator = new Validator();
     }
 
     getBreedById = async (req, res) => {
@@ -28,7 +28,7 @@ class DogController {
                 }
 
                 return res.status(200).json(breedInfo);
-
+            
             } else if(source === null) {
                 return res.status(500).send("Parametro de busqueda invalido."); 
             }
@@ -50,29 +50,31 @@ class DogController {
     }
 
     getBreedByName = async (req, res) => {
-        try {
-            const { breedName } = req.query;
-            let message = "";
+        try { 
+	    const { breedName } = req.query;
+	    let message = "";
 
-            if (!breedName) {
+	    if (!breedName) {
                 message = "Falta el nombre de la raza.";
-                return res.status(400).send(message);
-            }
+	        return res.status(400).send(message);
+	    }
+	
+	    let breedInfo = await this.api.getBreedByName(breedName);
 
-            let breedInfo = await this.api.getBreedByName(breedName);
-
-            if (!breedInfo) {
+	    if (!breedInfo) {
                 message = "Raza no encontrada.";
-                return res.status(400).send(message);
-            }
-
-            return res.status(200).json(breedInfo);
+	        return res.status(400).send(message);
+	    }
+	    
+	    return res.status(200).json(breedInfo);
         } catch (error) {
-            console.log(error);
-            message = "Raza no encontrada.";
-            return res.status(404).send(message);
-        }
+	    console.log(error);
+	    message = "Raza no encontrada.";
+	    return res.status(404).send(message);
+	}
     }
 }
+
+
 
 module.exports = DogController;
