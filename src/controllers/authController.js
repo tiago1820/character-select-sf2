@@ -9,6 +9,7 @@ class AuthController {
 
 		try {
 			const credentials = await signInWithEmailAndPassword(auth, reqEmail, password);
+
 			if (!credentials) {
 				return res.status(400).send("Email o contraseña invalidos.");
 			}
@@ -16,12 +17,39 @@ class AuthController {
 			const { user } = credentials;
 			const { email, uid } = user;
 
-			// Enviar email y uid a base de datos?
+			try {
+				const dataValues = await User.findOne({
+					where: {
+						email: email,
+						externalUid: uid
+					},
+				});
+
+				if (!dataValues) {
+					return res.status(404).send("Usuario no encontrado.");
+				}
+
+				const userInfo = {
+					email: dataValues.email,
+					id: dataValues.id,
+				};
+
+				return res.status(200).json(userInfo);
+
+			} catch (error) {
+				console.error(error);
+				return res.status(500).send("Error interno del servidor.");
+			}
 
 			return res.status(200).json({ email, uid })
 
 		} catch (error) {
-			return res.status(500).send("Error interno del servidor.");
+			console.log("ERROR ", error);
+			if (error.code === "auth/invalid-credential") {
+				return res.status(500).send("Email o contraseña invalido.");
+			}
+
+			return res.status(500).send("Email o contraseña invalido.");
 		}
 	}
 

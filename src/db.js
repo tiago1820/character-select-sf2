@@ -44,7 +44,7 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 const { Dog, Temperament } = sequelize.models;
-const { User } = sequelize.models;
+// const { User } = sequelize.models;
 
 Dog.belongsToMany(Temperament, { through: 'dog_temperament' });
 Temperament.belongsToMany(Dog, { through: 'dog_temperament' });
