@@ -9,11 +9,11 @@ class ApiService {
         this.API_KEY = API_KEY;
     }
 
-    getBreedById = async (breedId) => {
+    getBreedById = async (idBreed) => {
         try {
-            console.log(`${this.DOG_API}/${breedId}?${API_KEY}`);
+            console.log(`${this.DOG_API}/${idBreed}?${API_KEY}`);
 
-            const response = await axios(`${this.DOG_API}/${breedId}?${API_KEY}`);
+            const response = await axios(`${this.DOG_API}/${idBreed}?${API_KEY}`);
             const breedInfo = response.data;
             return breedInfo;
         } catch (error) {
