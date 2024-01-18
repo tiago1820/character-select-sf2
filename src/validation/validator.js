@@ -9,7 +9,7 @@ class Validator {
         } else if (idRegex.test(breedId)) {
             return "ID";
         } else {
-            return "Formato no valido."
+            return null;
         }
     }
 
