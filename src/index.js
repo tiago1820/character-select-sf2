@@ -1,3 +1,11 @@
+let mapImg = document.getElementById("mapImg");
+mapImg.addEventListener("click", function (event) {
+    let x = event.clientX;
+    let y = event.clientY;
+
+    console.log("Coordenadas X: " + x + ", Coordenadas Y: " + y);
+})
+
 
 const characters = document.querySelectorAll(".character");
 const flags = document.querySelectorAll(".flag");
@@ -11,8 +19,8 @@ characters.forEach((character) => {
     character.addEventListener("mouseenter", () => {
         themeAudio.play();
         moveAudio.play();
-        if(window.innerWidth < 450){
-            window.scrollTo({top:0, behavior: "smooth"});
+        if (window.innerWidth < 450) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
         removeCharacterSelection();
 
@@ -20,9 +28,9 @@ characters.forEach((character) => {
 
         flags.forEach((flag) => {
             const flagCountry = flag.classList[1];
-            if(flagCountry === characterCountry){
+            if (flagCountry === characterCountry) {
                 flag.classList.add("flag2");
-                if(previousFlag && previousFlag !== flag) {
+                if (previousFlag && previousFlag !== flag) {
                     previousFlag.classList.remove("flag2");
                 }
                 previousFlag = flag;
@@ -41,12 +49,12 @@ function changeSelectedCharacterImage(character) {
     largeCharacterImage.src = `./src/images/${characterId}.png`;
 }
 
-function removeCharacterSelection(){
+function removeCharacterSelection() {
     const selectedCharacter = document.querySelector(".selected");
     selectedCharacter.classList.remove("selected");
 }
 
-function removeFlagSelection(){
+function removeFlagSelection() {
     const selectedFlag = document.querySelector(".flag2");
     selectedFlag.classList.remove("flag2");
 }

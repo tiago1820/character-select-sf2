@@ -8,8 +8,9 @@ body {
     justify-content: center;
 }
 .worldmap img {
-    width: 750px;
-    height: 300px;
+    width: 47rem;
+    height: 19rem;
+
 }
 main {
     margin: 0 auto 0;
@@ -53,6 +54,26 @@ li {
     transform: scaleX(-1);
 }
 
+@media (max-width: 1000px){
+    .player2 {
+        display: none;
+    }
+}
 
+@media (max-width: 600px){
+    .big-character {
+        display: none;
+    }
+    .worldmap img {
+        width: 28rem;
+        height: 18rem;
 
+    }
+}
+@media (max-width: 400px){
+    .worldmap img {
+        width: 20rem;
+        height: 15rem;
 
+    }
+}
